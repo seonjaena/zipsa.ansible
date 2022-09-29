@@ -61,40 +61,40 @@
               - name: zipsa-mount
                 host: 
                   sourcePath: "{{ aws.log_mount.host }}"
-    # - name: Stop Service
-    #   tags: [stop-service]
-    #   block:
-    #     - name: Update Service
-    #       ecs_service: 
-    #         load_balancers:
-    #           - containerPort: "{{ port.service }}"
-    #             containerName: "{{ aws.ecs.container_name }}"
-    #             targetGroupArn: "{{ aws.alb.target_group_arn }}"
-    #         name: "{{ aws.ecs.service_name }}"
-    #         aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
-    #         aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
-    #         state: present
-    #         cluster: "{{ aws.ecs.cluster_name }}"
-    #         launch_type: EC2
-    #         region: "{{ aws.region }}"
-    #         task_definition: "{{task_definition_name}}"
-    #         desired_count: 0
-    #     - name: Stop Service
-    #       ecs_service: 
-    #         load_balancers:
-    #           - containerPort: "{{ port.service }}"
-    #             containerName: "{{ aws.ecs.container_name }}"
-    #             targetGroupArn: "{{ aws.alb.target_group_arn }}"
-    #         name: "{{ aws.ecs.service_name }}"
-    #         aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
-    #         aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
-    #         state: absent
-    #         cluster: "{{ aws.ecs.cluster_name }}"
-    #         launch_type: EC2
-    #         region: "{{ aws.region }}"
-    #     - name: Wait 300 Seconds
-    #       wait_for: 
-    #         timeout: 300
+    - name: Stop Service
+      tags: [terminate-service]
+      block:
+        - name: Update Service
+          ecs_service: 
+            load_balancers:
+              - containerPort: "{{ port.service }}"
+                containerName: "{{ aws.ecs.container_name }}"
+                targetGroupArn: "{{ aws.alb.target_group_arn }}"
+            name: "{{ aws.ecs.service_name }}"
+            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
+            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+            state: present
+            cluster: "{{ aws.ecs.cluster_name }}"
+            launch_type: EC2
+            region: "{{ aws.region }}"
+            task_definition: "{{task_definition_name}}"
+            desired_count: 0
+        - name: Stop Service
+          ecs_service: 
+            load_balancers:
+              - containerPort: "{{ port.service }}"
+                containerName: "{{ aws.ecs.container_name }}"
+                targetGroupArn: "{{ aws.alb.target_group_arn }}"
+            name: "{{ aws.ecs.service_name }}"
+            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
+            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+            state: absent
+            cluster: "{{ aws.ecs.cluster_name }}"
+            launch_type: EC2
+            region: "{{ aws.region }}"
+        - name: Wait 300 Seconds
+          wait_for: 
+            timeout: 300
     - name: Create Service
       tags: [create-service]
       block:
