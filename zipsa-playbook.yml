@@ -61,9 +61,9 @@
               - name: zipsa-mount
                 host: 
                   sourcePath: "{{ aws.log_mount.host }}"
-    - name: Stop Service
-      tags: [stop-service]
-      block:
+    # - name: Stop Service
+    #   tags: [stop-service]
+    #   block:
         # - name: Update Service
         #   ecs_service: 
         #     name: "{{ aws.ecs.service_name }}"
