@@ -17,6 +17,6 @@ dir:
   home: /root
   shell: /root/shell
 
-service:
-  port: "8080"
+port:
+  service: "8080"
   host: "0"

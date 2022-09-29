@@ -12,14 +12,11 @@ aws:
     service_name: zipsa
   alb: 
     target_group_arn: arn:aws:elasticloadbalancing:ap-northeast-2:886516594348:targetgroup/zipsa-target/b16493f3d28c4461
-  log_mount:
-    host: /application_log
-    container: /home/ec2-user/zipsa-log
 
 dir:
   home: /root
   shell: /root/shell
 
-service:
-  port: "8080"
+port:
+  service: "8080"
   host: "0"
