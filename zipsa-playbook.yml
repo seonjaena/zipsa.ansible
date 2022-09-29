@@ -66,6 +66,7 @@
       block:
         - name: Start Service
           ecs_service: 
+            force_new_deployment: true
             load_balancers:
               - containerPort: "{{ port.service }}"
                 containerName: "{{ aws.ecs.container_name }}"
