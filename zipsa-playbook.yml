@@ -51,7 +51,7 @@
               - containerPort: "{{ port.service }}"
                 hostPort: "{{ port.host }}"
                 protocol: tcp
-            family: "{{task_definition_name}}"
+            family: "{{new_task_definition_name}}"
             cpu: "1024"
             memory: "512"
             launch_type: EC2
@@ -77,6 +77,7 @@
             cluster: "{{ aws.ecs.cluster_name }}"
             launch_type: EC2
             region: "{{ aws.region }}"
+            task_definition: "{{old_task_definition_name}}"
             desired_count: 0
         - name: Stop Service
           ecs_service: 
@@ -110,7 +111,7 @@
             cluster: "{{ aws.ecs.cluster_name }}"
             launch_type: EC2
             region: "{{ aws.region }}"
-            task_definition: "{{task_definition_name}}"
+            task_definition: "{{new_task_definition_name}}"
             desired_count: 1 
             scheduling_strategy: REPLICA
             deployment_configuration: 
