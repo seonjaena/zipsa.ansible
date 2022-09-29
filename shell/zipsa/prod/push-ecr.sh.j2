@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export AWS_PROFILE=zipsa-{{env}}
+aws ecr get-login-password --region {{ aws.region }} | docker login --username AWS --password-stdin {{ aws.ecr.url }}
+docker tag {{image_name}}:{{image_tag}} {{ aws.ecr.url }}/{{ aws.ecr.name }}:{{image_name}}-{{env}}-{{image_tag}}
+docker push {{ aws.ecr.url }}/{{ aws.ecr.name }}:{{image_name}}-{{env}}-{{image_tag}}

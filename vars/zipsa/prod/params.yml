@@ -1,0 +1,22 @@
+aws:
+  region: ap-northeast-2
+  credentials: 
+    aws_access_key_id: AKIA442EBW2WH4TXKELQ
+    aws_secret_access_key: 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
+  ecr: 
+    url: 886516594348.dkr.ecr.ap-northeast-2.amazonaws.com
+    name: ecr-free
+  ecs:
+    cluster_name: ecs-free
+    container_name: zipsa-container
+    service_name: zipsa
+  alb: 
+    target_group_arn: arn:aws:elasticloadbalancing:ap-northeast-2:886516594348:targetgroup/zipsa-target/b16493f3d28c4461
+
+dir:
+  home: /root
+  shell: /root/shell
+
+service:
+  port: "8080"
+  host: "0"

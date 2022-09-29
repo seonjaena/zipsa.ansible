@@ -1,0 +1,2 @@
+download-center-server_dev ansible_host=127.0.0.1 ansible_user=nshc ansible_password=nshc6456 ansible_become_method=sudo ansible_become_password=nshc6456
+download-center-server_prod ansible_host=192.168.0.47 ansible_user=nshc ansible_password=nshc6456 ansible_become_method=sudo ansible_become_password=nshc6456
