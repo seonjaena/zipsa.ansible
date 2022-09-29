@@ -37,7 +37,7 @@
               image: "{{ aws.ecr.url }}/{{ aws.ecr.name }}:{{image_name}}-{{env}}-{{image_tag}}"
               healthCheck: 
                 command: 
-                - "CMD-SHELL",
+                - "CMD-SHELL"
                 - "curl -H 'Authorization: Bearer' http://localhost:8080/api/healthcheck/task"
                 interval: 300
                 timeout: 60
