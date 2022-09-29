@@ -77,7 +77,6 @@
             cluster: "{{ aws.ecs.cluster_name }}"
             launch_type: EC2
             region: "{{ aws.region }}"
-            task_definition: "{{task_definition_name}}"
             desired_count: 0
         - name: Stop Service
           ecs_service: 
