@@ -19,6 +19,7 @@ aws:
 dir:
   home: /root
   shell: /root/shell
+  server_code: zipsa
 
 port:
   service: "8080"
