@@ -1,9 +1,5 @@
 #!/bin/bash
 
 
-cd {{workspace}}/{{dir.server_code}}
-
-./gradlew clean build -x test -Pprofile={{env}} --info
-tar -zxvf {{workspace}}/{{dir.server_code}}/build/distributions/zipsa-*.tar.gz -C {{workspace}}
 
 
