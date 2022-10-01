@@ -1,8 +1,17 @@
 #!/bin/bash
 
+echo "HERE0"
+
 cd {{workspace}}/{{dir.server_code}}
 
+echo "HERE1"
+
 gradle wrapper
-./gradlew clean build -x test -Pprofile={{env}}
+
+echo "HERE2"
+
+./gradlew clean build -x test -Pprofile={{env}} --info
+
+echo "HERE3"
 
 tar -zxvf {{workspace}}/{{dir.server_code}}/build/distributions/zipsa-*.tar.gz -C {{workspace}}
