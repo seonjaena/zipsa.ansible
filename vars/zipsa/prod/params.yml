@@ -13,8 +13,8 @@ aws:
   alb: 
     target_group_arn: arn:aws:elasticloadbalancing:ap-northeast-2:886516594348:targetgroup/zipsa-target/b16493f3d28c4461
   log_mount:
-    host: /application_log
-    container: /home/ec2-user/zipsa-log
+    host: /home/ec2-user/zipsa-log
+    container: /application_log
 
 dir:
   home: /root
