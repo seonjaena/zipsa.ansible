@@ -4,4 +4,5 @@ cd {{workspace}}/{{dir.server_code}}
 
 gradle wrapper
 ./gradlew clean build -x test -Pprofile={{env}}
+
 tar -zxvf {{workspace}}/{{dir.server_code}}/build/distributions/zipsa-*.tar.gz -C {{workspace}}
