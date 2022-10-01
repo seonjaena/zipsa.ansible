@@ -17,20 +17,22 @@
           template:
             src: "shell/{{service_nm}}/{{env}}/test.sh.j2"
             dest: "{{ dir.shell }}/test.sh"
+            mode: "0755"
         - name: Move Jinja Files (build.sh)
           template:
             src: "shell/{{service_nm}}/{{env}}/build.sh.j2"
             dest: "{{ dir.shell }}/build.sh"
+            mode: "0755"
         - name: Move Jinja Files (build-docker.sh)
           template:
             src: "shell/{{service_nm}}/{{env}}/build-docker.sh.j2"
             dest: "{{ dir.shell }}/build-docker.sh"
+            mode: "0755"
         - name: Move Jinja Files (push-ecr.sh)
           template:
             src: "shell/{{service_nm}}/{{env}}/push-ecr.sh.j2"
             dest: "{{ dir.shell }}/push-ecr.sh"
-        - name: Change 'x' Permission
-          shell: "chmod -R +x {{ dir.shell }}"
+            mode: "0755"
     - name: Test Project
       tags: [test-project]
       block: 
