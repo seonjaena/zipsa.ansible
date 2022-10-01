@@ -37,7 +37,9 @@
       tags: [test-project]
       block: 
         - name: Test Project
-          shell: "{{ dir.shell }}/test.sh"
+          shell: "./test.sh"
+          args:
+            chdir: "{{ dir.shell }}"
     - name: Build Project
       tags: [build-project]
       block: 
