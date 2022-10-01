@@ -26,10 +26,13 @@
           template:
             src: "shell/{{service_nm}}/{{env}}/push-ecr.sh.j2"
             dest: "{{ dir.shell }}/push-ecr.sh"
-        - name: Change 'x' Permission
+        - name: Change 'x' Permission (test.sh)
           shell: "chmod +x {{ dir.shell }}/test.sh"
+        - name: Change 'x' Permission (build.sh)
           shell: "chmod +x {{ dir.shell }}/build.sh"
+        - name: Change 'x' Permission (build-docker.sh)
           shell: "chmod +x {{ dir.shell }}/build-docker.sh"
+        - name: Change 'x' Permission (push-ecr.sh)
           shell: "chmod +x {{ dir.shell }}/push-ecr.sh"
     - name: Test Project
       tags: [test-project]
