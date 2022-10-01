@@ -43,6 +43,8 @@
     - name: Build Project
       tags: [build-project]
       block: 
+        - name: "test"
+          shell: "echo THIS POINT 1"
         - name: Build Project
           shell: "./build.sh"
           args:
