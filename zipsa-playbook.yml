@@ -1,7 +1,7 @@
 - name: Zipsa Main Project CI/CD
   hosts: localhost
   connection: local
-  become: true
+  become: yes
   become_method: sudo
   vars_files: 
     - "vars/{{service_nm}}/{{env}}/params.yml"
@@ -70,7 +70,7 @@
             aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
             containers: 
             - name: "{{ aws.ecs.container_name }}"
-              essential: true
+              essential: yes
               image: "{{ aws.ecr.url }}/{{ aws.ecr.name }}:{{image_name}}-{{env}}-{{image_tag}}"
               healthCheck: 
                 command: 
@@ -82,7 +82,7 @@
                 startPeriod: 300
               mountPoints: 
               - containerPath: "{{ aws.log_mount.container }}"
-                readOnly: false
+                readOnly: no
                 sourceVolume: zipsa-mount
               portMappings: 
               - containerPort: "{{ port.service }}"
@@ -98,6 +98,20 @@
               - name: zipsa-mount
                 host: 
                   sourcePath: "{{ aws.log_mount.host }}"
+    - name: Delete Service
+      tags: [delete-service]
+      block:
+        - name: Delete Service
+          ecs_service:
+            name: "{{ aws.ecs.service_name }}"
+            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
+            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+            state: absent
+            cluster: "{{ aws.ecs.cluster_name }}"
+          force_deletion: yes
+        - name: Wait 5 Minutes
+          pause:
+            minutes: 5
     - name: Create Service
       tags: [create-service]
       block:
@@ -119,7 +133,7 @@
             scheduling_strategy: REPLICA
             deployment_configuration: 
               deployment_circuit_breaker: 
-                enable: false
-                rollback: false
+                enable: no
+                rollback: no
               minimum_healthy_percent: 100
               maximum_percent: 200
