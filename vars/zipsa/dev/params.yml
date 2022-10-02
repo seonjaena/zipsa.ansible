@@ -9,7 +9,8 @@ aws:
   ecs:
     cluster_name: ecs-free
     container_name: zipsa-container
-    service_name: zipsa
+    service_name_first: zipsa-1
+    service_name_second: zipsa-2
   alb: 
     target_group_arn: arn:aws:elasticloadbalancing:ap-northeast-2:886516594348:targetgroup/zipsa-target/b16493f3d28c4461
   log_mount:
