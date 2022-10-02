@@ -98,41 +98,41 @@
               - name: zipsa-mount
                 host: 
                   sourcePath: "{{ aws.log_mount.host }}"
-    - name: Delete Service
-      tags: [delete-service]
-      block:
-        - name: Stop Task
-          ecs_service: 
-            load_balancers:
-              - containerPort: "{{ port.service }}"
-                containerName: "{{ aws.ecs.container_name }}"
-                targetGroupArn: "{{ aws.alb.target_group_arn }}"
-            name: "{{ aws.ecs.service_name }}"
-            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
-            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
-            state: present
-            cluster: "{{ aws.ecs.cluster_name }}"
-            launch_type: EC2
-            region: "{{ aws.region }}"
-            task_definition: "{{task_definition_name}}"
-            desired_count: 0
-            scheduling_strategy: REPLICA
-            deployment_configuration: 
-              deployment_circuit_breaker: 
-                enable: no
-                rollback: no
-              minimum_healthy_percent: 100
-              maximum_percent: 200
-        - name: Wait 5 Minutes
-          pause:
-            minutes: 5
-        - name: Delete Service
-          ecs_service:
-            name: "{{ aws.ecs.service_name }}"
-            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
-            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
-            state: absent
-            cluster: "{{ aws.ecs.cluster_name }}"
+    # - name: Delete Service
+    #   tags: [delete-service]
+    #   block:
+    #     - name: Stop Task
+    #       ecs_service: 
+    #         load_balancers:
+    #           - containerPort: "{{ port.service }}"
+    #             containerName: "{{ aws.ecs.container_name }}"
+    #             targetGroupArn: "{{ aws.alb.target_group_arn }}"
+    #         name: "{{ aws.ecs.service_name }}"
+    #         aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
+    #         aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+    #         state: present
+    #         cluster: "{{ aws.ecs.cluster_name }}"
+    #         launch_type: EC2
+    #         region: "{{ aws.region }}"
+    #         task_definition: "{{task_definition_name}}"
+    #         desired_count: 0
+    #         scheduling_strategy: REPLICA
+    #         deployment_configuration: 
+    #           deployment_circuit_breaker: 
+    #             enable: no
+    #             rollback: no
+    #           minimum_healthy_percent: 100
+    #           maximum_percent: 200
+    #     - name: Wait 5 Minutes
+    #       pause:
+    #         minutes: 5
+    #     - name: Delete Service
+    #       ecs_service:
+    #         name: "{{ aws.ecs.service_name }}"
+    #         aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
+    #         aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+    #         state: absent
+    #         cluster: "{{ aws.ecs.cluster_name }}"
     - name: Create Service
       tags: [create-service]
       block:
@@ -158,3 +158,4 @@
                 rollback: no
               minimum_healthy_percent: 100
               maximum_percent: 200
+            force_new_deployment: yes
