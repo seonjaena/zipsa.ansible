@@ -108,7 +108,7 @@
             aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
             state: absent
             cluster: "{{ aws.ecs.cluster_name }}"
-          force_deletion: yes
+            force_deletion: yes
         - name: Wait 5 Minutes
           pause:
             minutes: 5
