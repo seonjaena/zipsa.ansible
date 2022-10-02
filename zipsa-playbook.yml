@@ -90,7 +90,7 @@
                 protocol: tcp
             family: "{{task_definition_name}}"
             cpu: "512"
-            memory: "500"
+            memory: "450"
             launch_type: EC2
             region: "{{ aws.region }}"
             state: present
