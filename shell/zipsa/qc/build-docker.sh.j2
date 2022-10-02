@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd {{workspace}}/zipsa-*
-docker build --build-arg PROFILE={{env}} -t {{image_name}}-{{env}}-{{image_tag}} .
+docker build --build-arg PROFILE={{env}} -t {{image_name}}-{{env}}:{{image_tag}} .
