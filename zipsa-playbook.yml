@@ -115,7 +115,7 @@
             launch_type: EC2
             region: "{{ aws.region }}"
             task_definition: "{{task_definition_name}}"
-            desired_count: 2
+            desired_count: 1
             scheduling_strategy: REPLICA
             deployment_configuration: 
               deployment_circuit_breaker: 
@@ -138,7 +138,7 @@
             launch_type: EC2
             region: "{{ aws.region }}"
             task_definition: "{{task_definition_name}}"
-            desired_count: 2
+            desired_count: 1
             scheduling_strategy: REPLICA
             deployment_configuration: 
               deployment_circuit_breaker: 
