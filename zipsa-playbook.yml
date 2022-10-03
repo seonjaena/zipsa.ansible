@@ -89,8 +89,8 @@
                 hostPort: "{{ port.host }}"
                 protocol: tcp
             family: "{{task_definition_name}}"
-            cpu: "512"
-            memory: "450"
+            cpu: "1024"
+            memory: "900"
             launch_type: EC2
             region: "{{ aws.region }}"
             state: present
