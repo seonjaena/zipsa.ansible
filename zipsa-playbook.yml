@@ -101,36 +101,13 @@
     - name: Create Service
       tags: [create-service]
       block:
-        - name: Start First Service
+        - name: Start Service
           ecs_service: 
             load_balancers:
               - containerPort: "{{ port.service }}"
                 containerName: "{{ aws.ecs.container_name }}"
                 targetGroupArn: "{{ aws.alb.target_group_arn }}"
-            name: "{{ aws.ecs.service_name_first }}"
-            aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
-            aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
-            state: present
-            cluster: "{{ aws.ecs.cluster_name }}"
-            launch_type: EC2
-            region: "{{ aws.region }}"
-            task_definition: "{{task_definition_name}}"
-            desired_count: 1
-            scheduling_strategy: REPLICA
-            deployment_configuration: 
-              deployment_circuit_breaker: 
-                enable: no
-                rollback: no
-              minimum_healthy_percent: 100
-              maximum_percent: 200
-            force_new_deployment: yes
-        - name: Start Second Service
-          ecs_service: 
-            load_balancers:
-              - containerPort: "{{ port.service }}"
-                containerName: "{{ aws.ecs.container_name }}"
-                targetGroupArn: "{{ aws.alb.target_group_arn }}"
-            name: "{{ aws.ecs.service_name_second }}"
+            name: "{{ aws.ecs.service_name }}"
             aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
             aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
             state: present
