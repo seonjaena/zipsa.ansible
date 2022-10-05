@@ -68,6 +68,7 @@
           ecs_taskdefinition: 
             aws_access_key: "{{ aws.credentials.aws_access_key_id }}"
             aws_secret_key: "{{ aws.credentials.aws_secret_access_key }}"
+            task_role_arn: ecs-full-access-s3
             containers: 
             - name: "{{ aws.ecs.container_name }}"
               essential: yes
